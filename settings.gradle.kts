@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "E-Buy"
 include(":app")
- 
+include(":core")
