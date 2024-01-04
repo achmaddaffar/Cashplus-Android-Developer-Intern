@@ -2,7 +2,7 @@ package com.daffa.core.data.source.remote
 
 import com.daffa.core.data.source.remote.network.ApiResponse
 import com.daffa.core.data.source.remote.network.ApiService
-import com.daffa.core.data.source.remote.response.ProductsResponse
+import com.daffa.core.data.source.remote.response.ProductResponseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,10 +12,10 @@ import java.io.IOException
 
 class RemoteDataSource(private val apiService: ApiService) {
 
-    suspend fun getAllProducts(): Flow<ApiResponse<ProductsResponse>> = flow {
+    suspend fun getAllProducts(): Flow<ApiResponse<List<ProductResponseItem>>> = flow {
         try {
             val result = apiService.getAllProducts()
-            if (result.productResponse != null) {
+            if (result != null) {
                 emit(ApiResponse.Success(result))
             } else {
                 emit(ApiResponse.Error(null))
