@@ -3,22 +3,23 @@ package com.daffa.core.data.source.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.daffa.core.util.Empty
 
 @Entity(tableName = "product")
 data class ProductEntity(
 
     @PrimaryKey
-    val id: Int,
+    val id: Int? = 0,
 
-    val price: Double,
+    val price: Double? = 0.0,
 
-    val description: String,
+    val description: String? = String.Empty,
 
-    val category: String,
+    val category: String? = String.Empty,
 
-    val imageUrl: String,
+    val imageUrl: String? = String.Empty,
 
-    val rate: Double,
+    val rate: Double? = 0.0,
 
-    val rateCount: Int
+    val rateCount: Int? = 0
 )

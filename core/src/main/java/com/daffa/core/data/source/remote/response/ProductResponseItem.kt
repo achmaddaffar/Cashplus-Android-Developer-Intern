@@ -1,10 +1,7 @@
 package com.daffa.core.data.source.remote.response
 
-import kotlinx.parcelize.Parcelize
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-@Parcelize
 data class Rating(
 
 	@field:SerializedName("rate")
@@ -12,13 +9,12 @@ data class Rating(
 
 	@field:SerializedName("count")
 	val count: Int? = null
-) : Parcelable
+)
 
-@Parcelize
 data class ProductResponseItem(
 
 	@field:SerializedName("image")
-	val image: String? = null,
+	val imageUrl: String? = null,
 
 	@field:SerializedName("price")
 	val price: Double? = null,
@@ -37,4 +33,4 @@ data class ProductResponseItem(
 
 	@field:SerializedName("category")
 	val category: String? = null
-) : Parcelable
+)
