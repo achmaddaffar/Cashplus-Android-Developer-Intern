@@ -9,8 +9,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class RemoteDataSource(private val apiService: ApiService) {
+class RemoteDataSource @Inject constructor(
+    private val apiService: ApiService
+) {
 
     suspend fun getAllProducts(): Flow<ApiResponse<List<ProductResponseItem>>> = flow {
         try {

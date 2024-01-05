@@ -1,4 +1,4 @@
-package com.daffa.core.util
+package com.daffa.core.data.mapper
 
 import com.daffa.core.data.source.local.entity.ProductEntity
 import com.daffa.core.data.source.remote.response.ProductResponseItem
@@ -6,7 +6,7 @@ import com.daffa.core.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-object Mapper {
+object ProductMapper {
 
     fun mapResponsesToDomain(response: List<ProductResponseItem>): Flow<List<Product>> {
         val listOfProduct = response.map {
