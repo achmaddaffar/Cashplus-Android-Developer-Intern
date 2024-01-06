@@ -1,7 +1,6 @@
 package com.daffa.core.data.source.local
 
 import com.daffa.core.data.source.local.entity.ProductEntity
-import com.daffa.core.data.source.local.room.ProductDao
 import com.daffa.core.data.source.local.room.ProductDatabase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -13,6 +12,22 @@ class LocalDataSource @Inject constructor(
     private val productDao = productDatabase.productDao()
 
     fun getAllCartItems(): Flow<List<ProductEntity>> = productDao.getAllCartItems()
+
     suspend fun insertCartItem(product: ProductEntity) = productDao.insertCartItem(product)
-    suspend fun deleteCartItem(product: ProductEntity) = productDao.deleteCartItem(product)
+
+    suspend fun insertCartItems(products: List<ProductEntity>) = productDao.insertCartItems(products)
+
+    fun addCartItem(productEntity: ProductEntity) {
+        productEntity.cartCount++
+        productDao.updateProduct(productEntity)
+    }
+
+    fun subtractCartItem(productEntity: ProductEntity) {
+        productEntity.cartCount--
+        productDao.updateProduct(productEntity)
+    }
+
+    fun getCartResult() = productDao.getCartResult()
+
+    fun deleteAllCartItem() = productDao.deleteTable()
 }

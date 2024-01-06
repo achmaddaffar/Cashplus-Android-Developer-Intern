@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.flowOf
 
 object ProductMapper {
 
-    fun mapResponsesToDomain(response: List<ProductResponseItem>): Flow<List<Product>> {
-        val listOfProduct = response.map {
-            Product(
+    fun mapResponsesToEntity(response: List<ProductResponseItem>): List<ProductEntity> =
+        response.map {
+            ProductEntity(
                 id = it.id,
                 title = it.title,
                 price = it.price,
@@ -22,24 +22,6 @@ object ProductMapper {
                 cartCount = 0
             )
         }
-        return flowOf(listOfProduct)
-    }
-
-    fun mapResponseToDomain(response: ProductResponseItem): Flow<Product> {
-        return flowOf(
-            Product(
-                id = response.id,
-                title = response.title,
-                price = response.price,
-                description = response.description,
-                category = response.category,
-                imageUrl = response.imageUrl,
-                rate = response.rating?.rate,
-                rateCount = response.rating?.count,
-                cartCount = 0
-            )
-        )
-    }
 
     fun mapEntitiesToDomain(entities: List<ProductEntity>): List<Product> =
         entities.map {

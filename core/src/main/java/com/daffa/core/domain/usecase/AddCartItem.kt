@@ -8,5 +8,7 @@ class AddCartItem @Inject constructor(
     private val repository: ProductRepository
 ) {
 
-    suspend operator fun invoke(product: Product) = repository.insertCartItem(product)
+    operator fun invoke(product: Product) {
+        repository.addCartItem(product)
+    }
 }

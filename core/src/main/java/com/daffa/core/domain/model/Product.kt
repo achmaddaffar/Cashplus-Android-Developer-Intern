@@ -13,5 +13,5 @@ data class Product(
     val imageUrl: String?,
     val rate: Double?,
     val rateCount: Int?,
-    val cartCount: Int?
+    var cartCount: Int
 ): Parcelable

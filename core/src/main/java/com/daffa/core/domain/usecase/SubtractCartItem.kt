@@ -8,5 +8,7 @@ class SubtractCartItem @Inject constructor(
     private val repository: ProductRepository
 ) {
 
-    suspend operator fun invoke(product: Product) = repository.deleteCartItem(product)
+    operator fun invoke(product: Product) {
+        repository.subtractCartItem(product)
+    }
 }

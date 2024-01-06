@@ -1,10 +1,10 @@
 package com.daffa.core.data.source.local.room
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.daffa.core.data.source.local.entity.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -14,9 +14,21 @@ interface ProductDao {
     @Query("SELECT * FROM product")
     fun getAllCartItems(): Flow<List<ProductEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCartItem(product: ProductEntity)
 
-    @Delete
-    suspend fun deleteCartItem(product: ProductEntity): Int
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCartItems(products: List<ProductEntity>)
+
+    @Query("DELETE FROM product WHERE id = :id")
+    suspend fun deleteCartItem(id: Int)
+
+    @Query("SELECT * FROM product WHERE cartCount > 0")
+    fun getCartResult(): Flow<List<ProductEntity>>
+
+    @Query("DELETE FROM product")
+    fun deleteTable()
+
+    @Update
+    fun updateProduct(product: ProductEntity)
 }

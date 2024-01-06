@@ -21,14 +21,10 @@ class MainViewModel @Inject constructor(
     fun getAllProduct() = getAllProducts().asLiveData()
 
     fun addCartItem(product: Product) {
-        viewModelScope.launch {
-            addCartItem.invoke(product)
-        }
+        addCartItem.invoke(product)
     }
 
     fun subtractCartItem(product: Product) {
-        viewModelScope.launch {
-            subtractCartItem.invoke(product)
-        }
+        subtractCartItem.invoke(product)
     }
 }

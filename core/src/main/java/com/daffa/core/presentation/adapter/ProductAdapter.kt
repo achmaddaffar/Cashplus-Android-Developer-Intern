@@ -6,11 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.daffa.core.base.BaseRecyclerViewAdapter
 import com.daffa.core.databinding.ItemListProductBinding
 import com.daffa.core.domain.model.Product
 
 class ProductAdapter : BaseRecyclerViewAdapter<ItemListProductBinding, Product>() {
+
+    interface OnItemClickCallback {
+        fun onItemClicked(product: Product)
+    }
 
     interface OnAddClickCallback {
         fun onAddClicked(product: Product)
@@ -20,8 +25,13 @@ class ProductAdapter : BaseRecyclerViewAdapter<ItemListProductBinding, Product>(
         fun onMinusClicked(product: Product)
     }
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
     private lateinit var onAddClickCallback: OnAddClickCallback
     private lateinit var onMinusClickCallback: OnMinusClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     fun setOnAddClickCallback(onAddClickCallback: OnAddClickCallback) {
         this.onAddClickCallback = onAddClickCallback
@@ -39,6 +49,7 @@ class ProductAdapter : BaseRecyclerViewAdapter<ItemListProductBinding, Product>(
         binding.apply {
             Glide.with(itemView.context)
                 .load(data.imageUrl)
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivProductImage)
 
             tvProductTitle.text = data.title
@@ -47,6 +58,10 @@ class ProductAdapter : BaseRecyclerViewAdapter<ItemListProductBinding, Product>(
             tvRatingCount.text = "(${data.rateCount.toString()})"
             tvCartCount.text = data.cartCount.toString()
             tvPrice.text = data.price.toString()
+
+            itemView.setOnClickListener {
+                onItemClickCallback.onItemClicked(data)
+            }
 
             ivAddIcon.setOnClickListener {
                 onAddClickCallback.onAddClicked(data)

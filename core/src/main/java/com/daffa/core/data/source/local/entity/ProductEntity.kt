@@ -3,12 +3,13 @@ package com.daffa.core.data.source.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.daffa.core.util.Empty
+import java.util.UUID
 
 @Entity(tableName = "product")
 data class ProductEntity(
 
     @PrimaryKey
-    val id: Int? = 0,
+    val id: Int?,
 
     val title: String? = String.Empty,
 
@@ -24,5 +25,5 @@ data class ProductEntity(
 
     val rateCount: Int? = 0,
 
-    val cartCount: Int? = 0
+    var cartCount: Int = 0
 )
