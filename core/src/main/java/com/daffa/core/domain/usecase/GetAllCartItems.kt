@@ -10,6 +10,6 @@ class GetAllCartItems @Inject constructor(
     private val repository: ProductRepository
 ) {
 
-    suspend operator fun invoke(): Flow<List<Product>> =
+    operator fun invoke(): Flow<List<Product>> =
         repository.getAllCartItems()
 }

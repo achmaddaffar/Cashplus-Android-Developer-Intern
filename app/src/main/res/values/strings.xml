@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">E-Buy</string>
     <string name="application_icon">Application icon</string>
+    <string name="checkout">Checkout</string>
+    <string name="error">ERROR</string>
+    <string name="error_general">Oops, something went wrong!</string>
 </resources>

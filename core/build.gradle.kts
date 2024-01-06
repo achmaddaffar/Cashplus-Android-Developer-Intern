@@ -65,4 +65,7 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:2.48")
     ksp("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

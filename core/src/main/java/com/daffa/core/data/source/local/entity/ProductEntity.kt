@@ -1,6 +1,5 @@
 package com.daffa.core.data.source.local.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.daffa.core.util.Empty
@@ -10,6 +9,8 @@ data class ProductEntity(
 
     @PrimaryKey
     val id: Int? = 0,
+
+    val title: String? = String.Empty,
 
     val price: Double? = 0.0,
 
@@ -21,5 +22,7 @@ data class ProductEntity(
 
     val rate: Double? = 0.0,
 
-    val rateCount: Int? = 0
+    val rateCount: Int? = 0,
+
+    val cartCount: Int? = 0
 )
