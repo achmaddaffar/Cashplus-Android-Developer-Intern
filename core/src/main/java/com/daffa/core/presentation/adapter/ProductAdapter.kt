@@ -71,14 +71,12 @@ class ProductAdapter : BaseRecyclerViewAdapter<ItemListProductBinding, Product>(
                 onMinusClickCallback.onMinusClicked(data)
             }
 
-            data.cartCount?.let {
-                if (it > 0) {
-                    ivMinusIcon.visibility = View.VISIBLE
-                    tvCartCount.visibility = View.VISIBLE
-                } else {
-                    ivMinusIcon.visibility = View.GONE
-                    tvCartCount.visibility = View.GONE
-                }
+            if (data.cartCount > 0) {
+                ivMinusIcon.visibility = View.VISIBLE
+                tvCartCount.visibility = View.VISIBLE
+            } else {
+                ivMinusIcon.visibility = View.GONE
+                tvCartCount.visibility = View.GONE
             }
         }
     }

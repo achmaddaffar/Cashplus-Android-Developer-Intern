@@ -46,6 +46,12 @@ class ProductRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getCartItem(id: Int): Flow<Product> {
+        return localDataSource.getCartItem(id).map {
+            ProductMapper.mapEntityToDomain(it)
+        }
+    }
+
     override suspend fun insertCartItem(product: Product) {
         localDataSource.insertCartItem(
             ProductMapper.mapDomainToEntity(product)

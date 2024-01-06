@@ -8,6 +8,7 @@ interface ProductRepository {
 
     fun getAllProducts(): Flow<Resource<List<Product>>>
     fun getAllCartItems(): Flow<List<Product>>
+    fun getCartItem(id: Int): Flow<Product>
     suspend fun insertCartItem(product: Product)
     fun addCartItem(product: Product)
     fun subtractCartItem(product: Product)

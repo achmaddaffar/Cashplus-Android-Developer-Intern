@@ -1,6 +1,7 @@
 package com.daffa.e_buy.presentation.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -12,6 +13,7 @@ import com.daffa.core.domain.model.Product
 import com.daffa.core.presentation.adapter.ProductAdapter
 import com.daffa.e_buy.R
 import com.daffa.e_buy.databinding.ActivityMainBinding
+import com.daffa.e_buy.presentation.ui.detail.ProductDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.notify
 import kotlin.coroutines.CoroutineContext
@@ -33,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         rvAdapter.setOnItemClickCallback(
             object : ProductAdapter.OnItemClickCallback {
                 override fun onItemClicked(product: Product) {
-
+                    val intent = Intent(this@MainActivity, ProductDetailActivity::class.java)
+                    intent.putExtra(PRODUCT_ID_EXTRA, product.id)
+                    startActivity(intent)
                 }
             }
         )
@@ -86,5 +90,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    companion object {
+        const val PRODUCT_ID_EXTRA = "product_id"
     }
 }

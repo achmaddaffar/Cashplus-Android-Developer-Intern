@@ -13,6 +13,8 @@ class LocalDataSource @Inject constructor(
 
     fun getAllCartItems(): Flow<List<ProductEntity>> = productDao.getAllCartItems()
 
+    fun getCartItem(id: Int): Flow<ProductEntity> = productDao.getCartItem(id)
+
     suspend fun insertCartItem(product: ProductEntity) = productDao.insertCartItem(product)
 
     suspend fun insertCartItems(products: List<ProductEntity>) = productDao.insertCartItems(products)

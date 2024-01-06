@@ -14,6 +14,9 @@ interface ProductDao {
     @Query("SELECT * FROM product")
     fun getAllCartItems(): Flow<List<ProductEntity>>
 
+    @Query("SELECT * FROM product WHERE id = :id")
+    fun getCartItem(id: Int): Flow<ProductEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCartItem(product: ProductEntity)
 

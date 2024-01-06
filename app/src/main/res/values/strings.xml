@@ -4,4 +4,5 @@
     <string name="checkout">Checkout</string>
     <string name="error">ERROR</string>
     <string name="error_general">Oops, something went wrong!</string>
+    <string name="rating_icon">Rating icon</string>
 </resources>
