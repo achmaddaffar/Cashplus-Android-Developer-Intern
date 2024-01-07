@@ -81,6 +81,8 @@ class ProductRepositoryImpl @Inject constructor(
     }
 
     override fun deleteAllCartItem() {
-        localDataSource.deleteAllCartItem()
+        CoroutineScope(Dispatchers.IO).launch {
+            localDataSource.deleteAllCartItem()
+        }
     }
 }

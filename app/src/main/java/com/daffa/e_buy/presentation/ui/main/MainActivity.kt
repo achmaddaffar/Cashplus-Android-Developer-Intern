@@ -13,10 +13,9 @@ import com.daffa.core.domain.model.Product
 import com.daffa.core.presentation.adapter.ProductAdapter
 import com.daffa.e_buy.R
 import com.daffa.e_buy.databinding.ActivityMainBinding
+import com.daffa.e_buy.presentation.ui.checkout.ProductCheckoutActivity
 import com.daffa.e_buy.presentation.ui.detail.ProductDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.notify
-import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
 @SuppressLint("NotifyDataSetChanged")
@@ -84,6 +83,10 @@ class MainActivity : AppCompatActivity() {
                         rvAdapter.submitData(it.data!!)
                     }
                 }
+            }
+
+            fabCheckout.setOnClickListener {
+                startActivity(Intent(this@MainActivity, ProductCheckoutActivity::class.java))
             }
         }
     }

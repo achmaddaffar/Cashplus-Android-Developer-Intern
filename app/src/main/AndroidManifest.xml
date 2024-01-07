@@ -16,6 +16,9 @@
         android:theme="@style/Theme.EBuy"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.ui.checkout.ProductCheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.ui.detail.ProductDetailActivity"
             android:exported="false" />
         <activity
