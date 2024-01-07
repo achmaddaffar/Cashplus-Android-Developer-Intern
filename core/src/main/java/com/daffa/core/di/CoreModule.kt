@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.daffa.core.data.ProductRepositoryImpl
 import com.daffa.core.data.source.local.LocalDataSource
+import com.daffa.core.data.source.local.room.ProductDao
 import com.daffa.core.data.source.local.room.ProductDatabase
 import com.daffa.core.data.source.remote.RemoteDataSource
 import com.daffa.core.data.source.remote.network.ApiService
@@ -40,6 +41,14 @@ object CoreModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductDao(
+        db: ProductDatabase
+    ): ProductDao {
+        return db.productDao()
     }
 
     @Provides

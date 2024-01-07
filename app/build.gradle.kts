@@ -18,6 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner = "com.daffa.e_buy.HiltTestRunner"
     }
 
     buildTypes {
@@ -61,6 +62,7 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
     // Coroutine Lifecycle Scopes
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
@@ -103,7 +105,12 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:2.48")
     ksp("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
+    testImplementation("com.google.dagger:hilt-android-testing:2.48")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // Unit Test
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("androidx.test:runner:1.5.2")
 }
