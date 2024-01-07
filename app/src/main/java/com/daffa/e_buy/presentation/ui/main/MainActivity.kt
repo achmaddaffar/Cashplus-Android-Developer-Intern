@@ -79,10 +79,13 @@ class MainActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         showLoading(false)
                         rvProducts.visibility = View.VISIBLE
-                        fabCheckout.visibility = View.VISIBLE
                         rvAdapter.submitData(it.data!!)
                     }
                 }
+            }
+
+            viewModel.getCartResult().observe(this@MainActivity) {
+                fabCheckout.visibility = if (it.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
 
             fabCheckout.setOnClickListener {

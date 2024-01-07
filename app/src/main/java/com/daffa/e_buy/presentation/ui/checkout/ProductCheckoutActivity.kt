@@ -33,7 +33,8 @@ class ProductCheckoutActivity : AppCompatActivity() {
         rvAdapter.setOnItemClickCallback(
             object : ProductAdapter.OnItemClickCallback {
                 override fun onItemClicked(product: Product) {
-                    val intent = Intent(this@ProductCheckoutActivity, ProductDetailActivity::class.java)
+                    val intent =
+                        Intent(this@ProductCheckoutActivity, ProductDetailActivity::class.java)
                     intent.putExtra(MainActivity.PRODUCT_ID_EXTRA, product.id)
                     startActivity(intent)
                 }
@@ -67,6 +68,7 @@ class ProductCheckoutActivity : AppCompatActivity() {
                 rvAdapter.submitData(it)
                 val total = it.map { product -> product.price!! * product.cartCount }
                 tvTotal.text = total.sum().toString()
+                btnCheckout.isEnabled = it.isNotEmpty()
             }
 
             btnCheckout.setOnClickListener {
@@ -76,7 +78,12 @@ class ProductCheckoutActivity : AppCompatActivity() {
                         "View other products"
                     ) { _, _ ->
                         viewModel.deleteAllCartItem()
-                        startActivity(Intent(this@ProductCheckoutActivity, MainActivity::class.java))
+                        startActivity(
+                            Intent(
+                                this@ProductCheckoutActivity,
+                                MainActivity::class.java
+                            )
+                        )
                         finishAffinity()
                     }
                     .setCancelable(false)
